@@ -52,7 +52,7 @@ Depois, verificar quantos caracteres há em cada string:
 nchar(data[1, ])
 ```
 
-Então, a cada 11 linhas deve-se retornar para o início da linha. A posição selecionada será o resto da divisão por 11.
+Então, a cada 11 linhas deve-se retornar para o início da linha. A posição selecionada será o resto da divisão por 11. Se o resto for zero, como em 31 / 31, então devemos posicionar ao final da linha.
 
 ```{r}
 
@@ -71,12 +71,63 @@ for (i in seq_len(nrow(data))) {
 
   x_ini = (x_ini + 3) %% nchar(data[i, ])
 }
+
+n_trees
 ```
 
-Solução:
+# PROBLEMA 2: DIFERENTES INCLINAÇÕES
+
+Agora com cinco regras de como descer as linhas e o quanto ir para a direita, deveremos automatizar o processo anterior e multiplicar a quantidade de árvores achadas.
+A função para achar a quantidade de árvores em uma regra específica pode ser:
 
 ```{r}
 
-n_trees
+trees <- function(right, down) {
 
+  # valores iniciais
+  x_ini <- 1
+  n_trees <- 0
+
+  # loop
+  for (i in seq(1, nrow(data), by = down)) {
+
+    # voltando para a última linha quando o resto é zero
+    if (x_ini == 0) {
+      x_ini <- nchar(data[i, ])
+    }
+
+    # verificando se acha uma árvore na posição
+    if (substr(data[i, ], x_ini, x_ini) == "#") {
+      n_trees <- n_trees + 1
+    }
+
+    # colocando o cursor na próxima posição
+    x_ini <- (x_ini + right) %% nchar(data[i, ])
+  }
+
+  n_trees
+}
+```
+
+Executando para o conjunto de regras, temos:
+
+```{r}
+
+# direita 1, baixo 1
+regra_1 = trees(1, 1)
+
+# direita 3, baixo 1
+regra_2 = trees(3, 1)
+
+# direita 5, baixo 1
+regra_3 = trees(5, 1)
+
+# direita 7, baixo 1
+regra_4 = trees(7, 1)
+
+# direita 1, baixo 2
+regra_5 = trees(1, 2)
+
+options(scipen = 99999999)
+prod(regra_1, regra_2, regra_3, regra_4, regra_5)
 ```
