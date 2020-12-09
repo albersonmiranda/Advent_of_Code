@@ -1,0 +1,74 @@
+---
+title: "ADVENT OF CODE"
+description: | 
+  Atividades do Day 3 do desafio Advent of Code
+date: "`r Sys.Date()`"
+author:
+  - first_name: "Alberson"
+    last_name: "Miranda"
+    url: https://datamares.netlify.app/
+    affiliation: Banestes SA
+    affiliation_url: https://www.banestes.com.br
+output: distill::distill_article
+---
+
+```{r config, include = FALSE}
+
+knitr::opts_chunk$set(
+    echo = TRUE
+)
+
+here::i_am("day_3/day_3.Rmd")
+
+```
+
+# PROBLEMA 1: COUNTING TREES
+
+O problema consiste em dizer quantas árvores serão achadas quando seguimos uma rota me diagonal, sendo 3 casas para a direita e 1 para baixo.
+
+```{r}
+
+# Importando arquivo
+data = read.delim(
+  here::here("day_3/data.txt"),
+  header = FALSE
+)
+
+# visualizando
+head(data)
+```
+
+Primeiramente, devemos contar a quantidade de linhas:
+
+```{r}
+
+nrow(data)
+```
+
+Depois, verificar quantos caracteres há em cada string:
+
+```{r}
+
+nchar(data[1, ])
+```
+
+Então, a cada 11 linhas deve-se retornar para o início da linha. A posição selecionada será o resto da divisão por 11.
+
+```{r}
+
+x_ini = 1
+n_trees = 0
+
+for (i in seq_len(nrow(data))) {
+
+  if (x_ini == 0) {
+    x_ini = nchar(data[i, ])
+  }
+
+  if (substr(data[i, ], x_ini, x_ini) == "#") {
+    n_trees = n_trees + 1
+  }
+
+  x_ini = (x_ini + 3) %% nchar(data[i, ])
+}
+```
