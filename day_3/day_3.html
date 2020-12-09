@@ -91,8 +91,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2020-12-08" />
-  <meta property="article:created" itemprop="dateCreated" content="2020-12-08" />
+  <meta property="article:published" itemprop="datePublished" content="2020-12-09" />
+  <meta property="article:created" itemprop="dateCreated" content="2020-12-09" />
   <meta name="article:author" content="Alberson Miranda" />
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -110,7 +110,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","author","output"]}},"value":[{"type":"character","attributes":{},"value":["ADVENT OF CODE"]},{"type":"character","attributes":{},"value":["Atividades do Day 3 do desafio Advent of Code\n"]},{"type":"character","attributes":{},"value":["2020-12-08"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["first_name","last_name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Alberson"]},{"type":"character","attributes":{},"value":["Miranda"]},{"type":"character","attributes":{},"value":["https://datamares.netlify.app/"]},{"type":"character","attributes":{},"value":["Banestes SA"]},{"type":"character","attributes":{},"value":["https://www.banestes.com.br"]}]}]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","author","output"]}},"value":[{"type":"character","attributes":{},"value":["ADVENT OF CODE"]},{"type":"character","attributes":{},"value":["Atividades do Day 3 do desafio Advent of Code\n"]},{"type":"character","attributes":{},"value":["2020-12-09"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["first_name","last_name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Alberson"]},{"type":"character","attributes":{},"value":["Miranda"]},{"type":"character","attributes":{},"value":["https://datamares.netlify.app/"]},{"type":"character","attributes":{},"value":["Banestes SA"]},{"type":"character","attributes":{},"value":["https://www.banestes.com.br"]}]}]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1420,7 +1420,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"ADVENT OF CODE","description":"Atividades do Day 3 do desafio Advent of Code","authors":[{"author":"Alberson Miranda","authorURL":"https://datamares.netlify.app/","affiliation":"Banestes SA","affiliationURL":"https://www.banestes.com.br","orcidID":""}],"publishedDate":"2020-12-08T00:00:00.000-03:00","citationText":"Miranda, 2020"}
+{"title":"ADVENT OF CODE","description":"Atividades do Day 3 do desafio Advent of Code","authors":[{"author":"Alberson Miranda","authorURL":"https://datamares.netlify.app/","affiliation":"Banestes SA","affiliationURL":"https://www.banestes.com.br","orcidID":""}],"publishedDate":"2020-12-09T00:00:00.000-03:00","citationText":"Miranda, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1440,7 +1440,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   true
   
-<br />2020-12-08
+<br />2020-12-09
 </div>
 
 <div class="d-article">
@@ -1472,7 +1472,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <pre><code><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>
 </code></pre>
 </div>
-<pre><code>[1] 324</code></pre>
+<pre><code>[1] 323</code></pre>
 </div>
 <p>Depois, verificar quantos caracteres há em cada string:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1485,10 +1485,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Então, a cada 11 linhas deve-se retornar para o início da linha. A posição selecionada será o resto da divisão por 11.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class="fl">324</span> <span class="op">%%</span> <span class="fl">11</span>
+<pre><code><span class="va">x_ini</span> <span class="op">=</span> <span class="fl">1</span>
+<span class="va">n_trees</span> <span class="op">=</span> <span class="fl">0</span>
+
+<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+
+  <span class="kw">if</span> <span class="op">(</span><span class="va">x_ini</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">x_ini</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span><span class="va">i</span>, <span class="op">]</span><span class="op">)</span>
+  <span class="op">}</span>
+
+  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span><span class="va">i</span>, <span class="op">]</span>, <span class="va">x_ini</span>, <span class="va">x_ini</span><span class="op">)</span> <span class="op">==</span> <span class="st">&quot;#&quot;</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">n_trees</span> <span class="op">=</span> <span class="va">n_trees</span> <span class="op">+</span> <span class="fl">1</span>
+  <span class="op">}</span>
+
+  <span class="va">x_ini</span> <span class="op">=</span> <span class="op">(</span><span class="va">x_ini</span> <span class="op">+</span> <span class="fl">3</span><span class="op">)</span> <span class="op">%%</span> <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span><span class="va">i</span>, <span class="op">]</span><span class="op">)</span>
+<span class="op">}</span>
 </code></pre>
 </div>
-<pre><code>[1] 5</code></pre>
+</div>
+<p>Solução:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class="va">n_trees</span>
+</code></pre>
+</div>
+<pre><code>[1] 200</code></pre>
 </div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

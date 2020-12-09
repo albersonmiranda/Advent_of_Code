@@ -72,3 +72,11 @@ for (i in seq_len(nrow(data))) {
   x_ini = (x_ini + 3) %% nchar(data[i, ])
 }
 ```
+
+Solução:
+
+```{r}
+
+n_trees
+
+```
